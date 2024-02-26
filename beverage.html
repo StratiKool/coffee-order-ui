@@ -49,23 +49,33 @@
             justify-content: center;
             margin-top: 200px;
         }
+        
+        .btn-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
 
         .text label{
             font-size: 30px;
             font-weight: bold;
         }
-        .btn button{
+        button{
             font-size: 30px;
+            text-decoration: none;
             font-family: "Poppins", sans-serif;
             font-weight: bold;
             color: black;
             padding: 2rem 1em;
-            margin: 0.5rem;
+            margin: 1rem 2rem;
             border-radius: 0.5em;
             border: none;
             outline: none;
             background: rgb(57, 189, 114);
             cursor: pointer;
+            width: calc(50vh - 1rem);
+            box-sizing: border-box;
         }
     </style>
 </head>
@@ -82,26 +92,34 @@
         <label>Select the beverage</label>
     </div>
     <div class="btn-container">
-        <div class="btn">
             <a href="condiments.html">
                 <button>Dark Roast</button>
             </a>
-        </div>
-        <div class="btn">
             <a href="condiments.html">
                 <button>Espresso</button>
             </a>
+
         </div>
-        <div class="btn">
+        <div class="btn-container">
+
             <a href="condiments.html">
                 <button>House Blend</button>
             </a>
-        </div>
-        <div class="btn">
+
             <a href="condiments.html">
                 <button>Decaf</button>
             </a>
         </div>
-    </div>
+
+        <script>
+            const all_buttons = document.querySelectorAll('button');
+            
+            all_buttons.forEach(bt => {
+                bt.addEventListener('click', (e)=>{
+                    let btnVal = e.target.innerHTML
+                })
+            })
+        </script>
+
 </body> 
 </html>

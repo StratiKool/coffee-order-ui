@@ -44,12 +44,113 @@
             margin-left: 40px;
         }
 
-        .btn{
+        .text{
+            display: flex;
+            justify-content: center;
+            margin-top: 200px;
+            margin-right: 400px;
+        }
+        
+        .btn-container{
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            margin-right: 400px;
+
         }
+        .btn {
+            font-size: 16px; /* Adjusted font size to make the button smaller */
+            text-decoration: none;
+            font-family: "Poppins", sans-serif;
+            font-weight: bold;
+            color: black;
+            padding: 1rem 0.5em; /* Adjusted padding to make the button smaller */
+            margin: 0.5rem 1rem; /* Adjusted margin to make the button smaller */
+            border-radius: 0.5em;
+            border: none;
+            outline: none;
+            background: rgb(57, 189, 114);
+            cursor: pointer;
+            width: calc(30vh - 1rem);
+            height: fit-content;
+            box-sizing: border-box;
+        }
+
+
+        .text label{
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .button{
+            font-size: 30px;
+            text-decoration: none;
+            font-family: "Poppins", sans-serif;
+            font-weight: bold;
+            color: black;
+            padding: 2rem 1em;
+            margin: 1rem 2rem;
+            border-radius: 0.5em;
+            border: none;
+            outline: none;
+            background: rgb(57, 189, 114);
+            cursor: pointer;
+            width: calc(50vh - 1rem);
+            box-sizing: border-box;
+        }
+
+        .order-container {
+            position: fixed;
+            top: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; 
+            z-index: 99; 
+            border: 1em;
+            border-color: black;
+            margin-right: 100px;
+            margin-top: 100px;
+            border: 3px solid black; /* Add a border around the container */
+            border-radius: 10px;
+        }
+
+        .order {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px; /* Adjust margin top as needed */
+        }
+
+        .myOrd {
+            font-weight: bold;
+            font-size: 24px;
+            color: rgb(35, 160, 118);
+            margin-top: 25px;
+        }
+
+        .difbtn {
+            font-size: 16px; /* Adjusted font size to make the button smaller */
+            text-decoration: none;
+            font-family: "Poppins", sans-serif;
+            font-weight: bold;
+            color: black;
+            padding: 1rem 0.5em; /* Adjusted padding to make the button smaller */
+            margin: 0.5rem 1rem; /* Adjusted margin to make the button smaller */
+            border-radius: 0.5em;
+            border: none;
+            outline: none;
+            background: rgb(57, 189, 114);
+            cursor: pointer;
+            width: calc(30vh - 1rem);
+            height: fit-content;
+            box-sizing: border-box;
+            margin-top: 100px;
+        }
+
+
+
     </style>
 </head>
 <body>
@@ -60,3 +161,49 @@
         <a href="orderStatus.html">Order Status</a>
     </nav>
 </header>
+
+<div class="text">
+    <label>Add the condiments</label>
+</div>
+<div class="btn-container">
+    <a href="condiments.html">
+        <button class="button">Milk</button>
+    </a>
+    <a href="condiments.html">
+        <button class="button">Mocha</button>
+    </a>
+
+</div>
+<div class="btn-container">
+
+    <a href="condiments.html">
+        <button class="button">Soy</button>
+    </a>
+
+    <a href="condiments.html">
+        <button class="button">Whip</button>
+    </a>
+</div>
+<div class="order-container">
+    <div class="myOrd">
+        <label>My Order</label>
+    </div>
+    <div class="order">
+        <a href="beverages.html">
+            <button class="btn">Selected Beverage</button>
+        </a>
+        <button class="btn">condiment1</button>
+        <button class="btn">condiment2</button>
+        <button class="btn">condiment3</button>
+        <button class="btn">condiment4</button>
+        <a href="orderStatus.html">
+            <button class="difbtn">Confirm Order</button>
+        </a>
+    </div>
+</div>
+
+<script>
+</script>
+
+</body>
+</html>
