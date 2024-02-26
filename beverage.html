@@ -92,34 +92,25 @@
         <label>Select the beverage</label>
     </div>
     <div class="btn-container">
-            <a href="condiments.html">
-                <button>Dark Roast</button>
-            </a>
-            <a href="condiments.html">
-                <button>Espresso</button>
-            </a>
+
+                <button id="1" onclick="submit(1)">Dark Roast</button>
+
+                <button id="2" onclick="submit(2)">Espresso</button>
+
 
         </div>
         <div class="btn-container">
 
-            <a href="condiments.html">
-                <button>House Blend</button>
-            </a>
+                <button id="3" onclick="submit(3)">House Blend</button>
 
-            <a href="condiments.html">
-                <button>Decaf</button>
-            </a>
+                <button id="4" onclick = "submit(4)">Decaf</button>
         </div>
 
-        <script>
-            const all_buttons = document.querySelectorAll('button');
-            
-            all_buttons.forEach(bt => {
-                bt.addEventListener('click', (e)=>{
-                    let btnVal = e.target.innerHTML
-                })
-            })
-        </script>
-
 </body> 
+<script>
+    function submit(id){
+        let beverage = document.getElementById(id).innerHTML;
+        location.href = 'condiments.html?beverage=' + beverage;
+    }
+</script>
 </html>
