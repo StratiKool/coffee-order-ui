@@ -167,21 +167,21 @@
 </div>
 <div class="btn-container">
     <a href="condiments.html">
-        <button class="button">Milk</button>
+        <button id="c1" onclick="add(1)" class="button">Milk</button>
     </a>
     <a href="condiments.html">
-        <button class="button">Mocha</button>
+        <button id="c2" onclick="add(2)" class="button">Mocha</button>
     </a>
 
 </div>
 <div class="btn-container">
 
     <a href="condiments.html">
-        <button class="button">Soy</button>
+        <button id="c3" onclick="add(3)" class="button">Soy</button>
     </a>
 
     <a href="condiments.html">
-        <button class="button">Whip</button>
+        <button id="c4" onclick="add(4)" class="button">Whip</button>
     </a>
 </div>
 <div class="order-container">
@@ -189,13 +189,13 @@
         <label>My Order</label>
     </div>
     <div class="order">
-        <a href="beverages.html">
-            <button class="btn" id="beverage">Selected Beverage</button>
+        <a href="beverage.html">
+            <button class="btn" id="beverage"></button>
         </a>
-        <button id="c1" onclick="add(1)" class="btn">condiment1</button>
-        <button id="c2" onclick="add(2)" class="btn">condiment2</button>
-        <button id="c3" onclick="add(3)" class="btn">condiment3</button>
-        <button id="c4" onclick="add(4)" class="btn">condiment4</button>
+        <button  id="cond1" class="btn"></button>
+        <button  id="cond2" class="btn"></button>
+        <button  id="cond3" class="btn"></button>
+        <button  id="cond4" class="btn"></button>
         <a href="orderStatus.html">
             <button class="difbtn">Confirm Order</button>
         </a>
@@ -206,14 +206,15 @@
     let beverage = new URLSearchParams(window.location.search).get("beverage");
     let button = document.getElementById("beverage");
     button.innerHTML = beverage;
-    console.log(beverage);
     let orders=[];
     function add(id){
         if(orders.length <=4){
-            orders.push(document.getElementById("c"+ id).innerText);
+            let optionText = document.getElementById("c" + id).innerText;
+            let cond = document.getElementById("cond1");
+            cond.innerHTML = optionText;
             for(order in orders){
-                condiment = document.getElementById(order)
-                condiment.innerText = orders[order];
+                condiment = document.getElementById(order);
+                condiment.innerHTML = orders[order];
             }
         }
     }
