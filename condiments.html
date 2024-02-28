@@ -82,6 +82,24 @@
             font-weight: bold;
         }
 
+        button {
+            font-size: 16px; /* Adjusted font size to make the button smaller */
+            text-decoration: none;
+            font-family: "Poppins", sans-serif;
+            font-weight: bold;
+            color: black;
+            padding: 1rem 0.5em; /* Adjusted padding to make the button smaller */
+            margin: 0.5rem 1rem; /* Adjusted margin to make the button smaller */
+            border-radius: 0.5em;
+            border: none;
+            outline: none;
+            background: rgb(57, 189, 114);
+            cursor: pointer;
+            width: calc(30vh - 1rem);
+            height: fit-content;
+            box-sizing: border-box;
+        }
+
         .button{
             font-size: 30px;
             text-decoration: none;
@@ -109,10 +127,9 @@
             align-items: center; 
             z-index: 99; 
             border: 1em;
-            border-color: black;
             margin-right: 100px;
             margin-top: 100px;
-            border: 3px solid black; /* Add a border around the container */
+            border: 3px solid black; 
             border-radius: 10px;
         }
 
@@ -120,7 +137,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 10px; /* Adjust margin top as needed */
+            margin-top: 10px; 
+        }
+
+        .condis{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .myOrd {
@@ -146,7 +169,7 @@
             width: calc(30vh - 1rem);
             height: fit-content;
             box-sizing: border-box;
-            margin-top: 100px;
+            margin-top: 25px;
         }
 
 
@@ -166,23 +189,19 @@
     <label>Add the condiments</label>
 </div>
 <div class="btn-container">
-    <a href="condiments.html">
-        <button id="c1" onclick="add(1)" class="button">Milk</button>
-    </a>
-    <a href="condiments.html">
-        <button id="c2" onclick="add(2)" class="button">Mocha</button>
-    </a>
+   
+        <button id="c0" onclick="add(0)" class="button">Milk</button>
+
+        <button id="c1" onclick="add(1)" class="button">Mocha</button>
+
 
 </div>
 <div class="btn-container">
 
-    <a href="condiments.html">
-        <button id="c3" onclick="add(3)" class="button">Soy</button>
-    </a>
+        <button id="c2" onclick="add(2)" class="button">Soy</button>
 
-    <a href="condiments.html">
-        <button id="c4" onclick="add(4)" class="button">Whip</button>
-    </a>
+        <button id="c3" onclick="add(3)" class="button">Whip</button>
+
 </div>
 <div class="order-container">
     <div class="myOrd">
@@ -192,10 +211,9 @@
         <a href="beverage.html">
             <button class="btn" id="beverage"></button>
         </a>
-        <button  id="cond1" class="btn"></button>
-        <button  id="cond2" class="btn"></button>
-        <button  id="cond3" class="btn"></button>
-        <button  id="cond4" class="btn"></button>
+        <div id="orderList" class="condis">
+
+        </div>
         <a href="orderStatus.html">
             <button class="difbtn">Confirm Order</button>
         </a>
@@ -208,15 +226,35 @@
     button.innerHTML = beverage;
     let orders=[];
     function add(id){
-        if(orders.length <=4){
-            let optionText = document.getElementById("c" + id).innerText;
-            let cond = document.getElementById("cond1");
-            cond.innerHTML = optionText;
-            for(order in orders){
-                condiment = document.getElementById(order);
-                condiment.innerHTML = orders[order];
-            }
+        orders.push(id);
+        addAllBtns();
+    }
+    function remove(id){
+        if(id == 0){
+            orders.shift();
+        }else{
+            orders.splice(id, 1);
+        }
+        addAllBtns();
+    }
+
+    function addAllBtns(){
+
+        document.getElementById("orderList").innerHTML = "";
+        for(order in orders){
+
+            var _button = document.createElement("button");
+            let optionText = document.getElementById("c" + orders[order]).innerText;
+  
+            _button.innerText = optionText;
+            _button.setAttribute("onclick", "remove("+order+")");
+            const node = document.getElementById("orderList").appendChild(_button);
+
         }
     }
+
+
+
+
 </script>
 </html>
