@@ -72,16 +72,55 @@
     </nav>
 </header>
 
-<div class="confirmedOrder">
-    <label>Order Placed:</label>
-    <label>Order ID: 55</label>
-    <label>Dark Roast with milk and double mocha</label>
-    <label>Total: $4.5</label>
-
-</div>
+<div id="list"></div>
 
 
 <script>
+    let beverages = [];
+    finalOrder();
+    async function getLatest(){
+            let host = "http://localhost:8080/orders";
+
+            let request = {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            };
+            let response = await fetch(host + "/getLatest", request);
+            if(response.status == 200){
+                return response.json();
+            }else{
+                alert("Something went wrong in the backend!")
+            }
+        }
+
+        async function finalOrder(){
+            if(beverages.length == 0){
+                let beverage = await getLatest();
+                beverages.push(beverage);
+            }
+
+            let list = document.getElementById("list");
+            list.innerHTML = "";
+
+            for (let beverage of beverages) {
+                let div = document.createElement("div");
+                div.className = "confirmedOrder";
+                console.log(beverage.id);
+                console.log(beverage.description);
+                console.log(beverage.cost);
+                let innerHtml = `
+                    <label>Order Placed:</label>
+                    <label>Order ID: ${beverage.id}</label>
+                    <label>${beverage.description}</label>
+                    <label>Total: $${beverage.cost}</label>
+      
+                    `;
+                div.innerHTML = innerHtml;
+                list.appendChild(div);
+            }
+        }
 </script>
 
 </body>

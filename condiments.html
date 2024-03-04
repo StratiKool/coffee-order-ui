@@ -214,13 +214,14 @@
         <div id="orderList" class="condis">
 
         </div>
-        <a href="confirmOrder.html">
-            <button class="difbtn">Confirm Order</button>
-        </a>
+            <a href="confirmOrder.html">
+                <button class="difbtn" onclick="addTheOrder()">Confirm Order</button>
+            </a>
     </div>
 </div>
 </body>
 <script>
+    let host = "http://localhost:8080"
     let beverage = new URLSearchParams(window.location.search).get("beverage");
     let button = document.getElementById("beverage");
     button.innerHTML = beverage;
@@ -251,6 +252,35 @@
             const node = document.getElementById("orderList").appendChild(_button);
 
         }
+    }
+    let condiments = [];
+    async function addTheOrder(){
+        let message = "";
+
+        for(order in orders){
+            let condiment = document.getElementById("c" +orders[order]).innerText;
+            condiments.push(condiment);
+            console.log(condiment);
+        }
+        console.log(beverage);
+
+        let orderData = {beverage: beverage, condiments: condiments};
+
+        let request = {
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(orderData)
+                };
+                let response = await fetch(host + "/orders", request);
+                if(response.status == 200) {
+                      message = "The beverage was added successfully!";
+                } else {
+                  console.log(response);
+                  message = "Something went wrong! Order data could not be saved.";
+                }
+                alert(message);
     }
 
 
