@@ -95,12 +95,12 @@
             }
         }
 
+        
         async function finalOrder(){
             if(beverages.length == 0){
                 let beverage = await getLatest();
                 beverages.push(beverage);
             }
-
             let list = document.getElementById("list");
             list.innerHTML = "";
 
@@ -119,6 +119,7 @@
                     `;
                 div.innerHTML = innerHtml;
                 list.appendChild(div);
+                
             }
         }
 </script>
