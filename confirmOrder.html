@@ -79,7 +79,7 @@
     let beverages = [];
     finalOrder();
     async function getLatest(){
-            let host = "https://coffee-order-backend.onrender.com/orders";
+            let host = "https://coffee-order-backend.onrender.com";
 
             let request = {
                 method: "GET",
@@ -87,7 +87,7 @@
                     "Content-Type": "application/json"
                 },
             };
-            let response = await fetch(host + "/getLatest", request);
+            let response = await fetch(host + "/orders/getLatest", request);
             if(response.status == 200){
                 let result = await response.json();
                 return result;
