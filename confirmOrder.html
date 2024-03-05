@@ -89,7 +89,8 @@
             };
             let response = await fetch(host + "/getLatest", request);
             if(response.status == 200){
-                return response.json();
+                let result = await response.json();
+                return result;
             }else{
                 alert("Something went wrong in the backend!")
             }

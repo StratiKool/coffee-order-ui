@@ -214,9 +214,9 @@
         <div id="orderList" class="condis">
 
         </div>
-            <a href="confirmOrder.html">
+            
                 <button class="difbtn" onclick="addTheOrder()">Confirm Order</button>
-            </a>
+            
     </div>
 </div>
 </body>
@@ -274,8 +274,9 @@
                   body: JSON.stringify(orderData)
                 };
                 let response = await fetch(host + "/orders", request);
-                if(response.status == 200) {
+                if(response.status == 201) {
                       message = "The beverage was added successfully!";
+                      location.href = "confirmOrder.html";
                 } else {
                   console.log(response);
                   message = "Something went wrong! Order data could not be saved.";
