@@ -80,13 +80,14 @@
     </style>
 </head>
 <body>
-<header class="header">
-    <a href="index.html" class="logo">Coffee Order System</a>
-
-    <nav class="navbar">
-        <a href="orderStatus.html">Order Status</a>
-    </nav>
-</header>
+    <header class="header">
+        <a href="index.html" class="logo">Coffee Order System</a>
+    
+        <nav class="navbar">
+            <a href="orderStatus.html">Order Status</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
 
     <div class="text">
         <label>Select the beverage</label>
@@ -106,7 +107,8 @@
                 <button id="4" onclick = "submit(4)">Decaf</button>
         </div>
 
-</body> 
+</body>
+<script src="configuration.js"></script> 
 <script>
     function submit(id){
         let beverage = document.getElementById(id).innerHTML;

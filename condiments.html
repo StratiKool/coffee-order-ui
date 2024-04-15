@@ -177,13 +177,14 @@
     </style>
 </head>
 <body>
-<header class="header">
-    <a href="index.html" class="logo">Coffee Order System</a>
-
-    <nav class="navbar">
-        <a href="orderStatus.html">Order Status</a>
-    </nav>
-</header>
+    <header class="header">
+        <a href="index.html" class="logo">Coffee Order System</a>
+    
+        <nav class="navbar">
+            <a href="orderStatus.html">Order Status</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
 
 <div class="text">
     <label>Add the condiments</label>
@@ -220,8 +221,9 @@
     </div>
 </div>
 </body>
+<script src="configuration.js"></script>
 <script>
-    let host = "https://coffee-order-backend.onrender.com"
+    let host = getHost();
     let beverage = new URLSearchParams(window.location.search).get("beverage");
     let button = document.getElementById("beverage");
     button.innerHTML = beverage;
@@ -269,19 +271,26 @@
         let request = {
                   method: "POST",
                   headers: {
-                      "Content-Type": "application/json"
+                      "Content-Type": "application/json",
+                      'Authorization': `Bearer ${configuration.token()}`
                   },
                   body: JSON.stringify(orderData)
                 };
-                let response = await fetch(host + "/orders", request);
-                if(response.status == 201) {
-                      message = "The beverage was added successfully!";
-                      location.href = "confirmOrder.html";
-                } else {
-                  console.log(response);
-                  message = "Something went wrong! Order data could not be saved.";
-                }
-                alert(message);
+                const headers = { 'Authorization': `Bearer ${configuration.token()}` };
+                return response = await fetch(host + "/orders", { headers })
+                 .then((response) =>
+                 {
+                    if(response.status == 401) {
+                        logout();
+                    }
+                    return response.json();
+                 })
+                 .catch((error) => {
+                    console.log(error);
+                    alert("Something went wrong!");
+
+                    return [];
+                 });
     }
 
 

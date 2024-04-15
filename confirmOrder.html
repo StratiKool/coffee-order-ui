@@ -64,36 +64,46 @@
     </style>
 </head>
 <body>
-<header class="header">
-    <a href="index.html" class="logo">Coffee Order System</a>
-
-    <nav class="navbar">
-        <a href="orderStatus.html">Order Status</a>
-    </nav>
-</header>
+    <header class="header">
+        <a href="index.html" class="logo">Coffee Order System</a>
+    
+        <nav class="navbar">
+            <a href="orderStatus.html">Order Status</a>
+            <a href="login.html">Login</a>
+        </nav>
+    </header>
 
 <div id="list"></div>
 
-
+<script src="configuration.js"></script>
 <script>
     let beverages = [];
     finalOrder();
     async function getLatest(){
-            let host = "https://coffee-order-backend.onrender.com";
+            let host = getHost();
 
             let request = {
                 method: "GET",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${configuration.token()}`
                 },
             };
-            let response = await fetch(host + "/orders/getLatest", request);
-            if(response.status == 200){
-                let result = await response.json();
-                return result;
-            }else{
-                alert("Something went wrong in the backend!")
-            }
+            const headers = { 'Authorization': `Bearer ${configuration.token()}` };
+            return response = await fetch(host + "/orders/getLatest", { headers })
+                .then((response) =>
+                {
+                if(response.status == 401) {
+                    logout();
+                }
+                return response.json();
+                })
+                .catch((error) => {
+                console.log(error);
+                alert("Something went wrong!");
+
+                return [];
+                });
         }
 
         
