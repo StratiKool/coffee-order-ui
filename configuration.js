@@ -40,13 +40,13 @@ let configuration = {
 updateTheNavigationBar();
 
 async function updateTheNavigationBar() {
-    const navigation = document.getElementsByClassName("topnav")[0];
+    const navigation = document.getElementsByClassName("navbar")[0];
     let loginTag = navigation.children[navigation.children.length-1];
     if(configuration.isLoggedIn()) {
         loginTag.innerHTML = 
-        `<li class="right"><a href="#" onclick="logout()"><Logout</a></li>`;
+        `<a href="#" onclick="logout()">Logout</a>`;
     }else {
-        loginTag.innerHTML = `<li class="right"><a href="login.html">Login</a></li>`;
+        loginTag.innerHTML = `<a href="login.html">Login</a>`;
     }
 }
     async function login() {

@@ -276,21 +276,14 @@
                   },
                   body: JSON.stringify(orderData)
                 };
-                const headers = { 'Authorization': `Bearer ${configuration.token()}` };
-                return response = await fetch(host + "/orders", { headers })
-                 .then((response) =>
-                 {
-                    if(response.status == 401) {
-                        logout();
-                    }
-                    return response.json();
-                 })
-                 .catch((error) => {
-                    console.log(error);
-                    alert("Something went wrong!");
-
-                    return [];
-                 });
+                let response = await fetch(host + "/orders", request);
+                if (response.status == 201) {
+                    message = "The coffee was added successfully!";
+                    location.href = "confirmOrder.html";
+                } else {
+                    console.log(response);
+                    message = "Something went wrong! Coffee was not added.";
+                }
     }
 
 
